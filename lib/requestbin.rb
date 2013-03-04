@@ -5,7 +5,7 @@ module Requestbin
 
     class Bins
 
-        def create(data)
+        def create
             post_request('bins')
         end
 
