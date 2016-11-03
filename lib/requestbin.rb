@@ -6,19 +6,19 @@ module Requestbin
     class Bins
 
         def create
-            post_request('bins')
+            Bins.post_request('bins')
         end
 
         def get(bin_name)
-            get_request(File.join('bins', bin_name.to_s))
+            Bins.get_request(File.join('bins', bin_name.to_s))
         end
 
         def requests(bin_name)
-            get_request(File.join('bins', bin_name.to_s, 'requests'))
+            Bins.get_request(File.join('bins', bin_name.to_s, 'requests'))
         end
 
         def request(bin_name, request_name)
-            get_request(File.join('bins', bin_name.to_s, 'requests', request_name.to_s))
+            Bins.get_request(File.join('bins', bin_name.to_s, 'requests', request_name.to_s))
         end
 
         private
@@ -32,7 +32,7 @@ module Requestbin
         end
 
 
-        def self.request(method, route)
+        def self.request(method, route, data=nil, options=nil)
           path = path_for(route, options)
           uri = uri_for(path)
           method = method.upcase
