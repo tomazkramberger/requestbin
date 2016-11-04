@@ -52,7 +52,10 @@ module Requestbin
 
         def self.parse_response(response)
             begin
-                JSON.parse(response.body)
+                [JSON.parse(response.body,  symbolize_names: true)].flatten.each do |json_object|
+                    next if json_object.fetch(:body, '').empty?
+                    json_object[:body] = JSON.parse(json_object[:body])
+                end
             rescue JSON::ParserError => e
                 response.body.is_a?(Array) ? response.body : {' ErrorCode' => -1 }
             end
