@@ -1,6 +1,6 @@
 module Requestbin
 
-    BASE_URL = "http://requestb.in/api/"
+    BASE_URL = "https://requestb.in/api/"
     API_VERSION = "v1"
 
     class Bins
